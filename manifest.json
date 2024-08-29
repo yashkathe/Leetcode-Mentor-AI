@@ -1,0 +1,32 @@
+{
+    "manifest_version": 2,
+    "name": "Leetcode Mentor",
+    "version": "0.1",
+    "description": "Leetcode Mentor is an AI Mentor which helps you solve your leetcode problems. Instead of directly giving the exact solution it guides towards a correct path to solve the problem.",
+    "icons": {
+        "48": "icons/main-icon-48.png",
+        "96": "icons/main-icon-96.png"
+    },
+    "browser_action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "96": "icons/main-icon-96.png"
+        }
+    },
+    "permissions": [
+        "activeTab"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://leetcode.com/problems/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "css": [
+                "styles.css"
+            ]
+        }
+    ]
+}
