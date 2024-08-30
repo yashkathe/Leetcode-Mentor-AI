@@ -10,11 +10,35 @@
 
 <body>
     <div id="main-div">
-        <h1 id="status-header"></h1>
-        <p id="status-para"></p>
+        
+        <!-- display when not on leetcode -->
+        <div id="status-div">
+            <h1 id="status-header"></h1>
+            <p id="status-para"></p>
+        </div>
+
+        <!-- display when on leetcode -->
+        <div id="active-leetcode">
+            <h1 id="problem-title"></h1>
+
+            <p id="readme">
+            
+            </p>
+            
+            <!-- spinner -->
+            <span class="loader"></span>
+            
+            <button id="hint-btn"> Get Hint </button>
+
+            
+        </div>
+
     </div>
+
 </body>
 
-<script src="popup.js"></script>
+<!-- load scripts -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="popup.js" defer></script>
 
 </html>

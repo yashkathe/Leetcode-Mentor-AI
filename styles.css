@@ -10,6 +10,12 @@ body {
     font-family: "Ubuntu", sans-serif !important;
     box-sizing: border-box;
     width: 100%;
+    padding: 1rem;
+}
+
+/* styles - when not on valid link */
+
+#status-div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,4 +33,53 @@ body {
 
 #status-para br {
     margin-bottom: 8px;
+}
+
+/* styles - when on valid link */
+
+#active-leetcode {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+#problem-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#hint-btn{
+    display: none;
+    padding: 10px;
+    background: #8ebbff;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+}
+
+#hint-btn:hover{
+    cursor:pointer;
+}
+
+/* spinner */
+.loader {
+    width: 30px;
+    height: 30px;
+    border: 6px solid #8ebbff;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    margin-bottom: 2.5rem;
+    display: none;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
