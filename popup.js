@@ -95,17 +95,54 @@ document.addEventListener('DOMContentLoaded', () => {
                 const spinner = document.querySelector('.loader');
 
                 // fetch api
-                spinner.style.display = 'inline-block';
-
-                browser.tabs.sendMessage(activeTab.id, { type: "GET-API-DATA" }).then((response) => {
+                browser.tabs.sendMessage(activeTab.id, { type: "GET-API-DATA" }).then(async (response) => {
+                    console.log(response)
                     if(response) {
+
                         console.log(response);
+
+                        readme.style.display = 'none';
+                        spinner.style.display = 'inline-block';
+
+                        const fetchResult = await fetchReadmeContent(response);
+
+                        const htmlContent = fetchResult.hints;
+                        readme.textContent = htmlContent;
+
+                        readme.style.display = 'block';
+                        spinner.style.display = 'none';
                     }
                 }).catch((error) => {
                     console.log(error);
                 });
 
-                spinner.style.display = 'none';
             });
         });
 });
+
+const fetchReadmeContent = async (responseData) => {
+    try {
+        const apiUrl = 'http://127.0.0.1:5000/get-hints/phi3:latest'; // Replace with your API URL
+
+        const fetchOptions = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(responseData) // Send the response data as the request body
+        };
+
+        const response = await fetch(apiUrl, fetchOptions);
+
+        if(!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json(); // Assuming the response is JSON
+        return data; // This is the content that you want to display
+
+    } catch(error) {
+        console.error('Error fetching README content:', error);
+        return { error: 'Failed to fetch README content' };
+    }
+};

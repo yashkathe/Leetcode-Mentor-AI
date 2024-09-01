@@ -68,7 +68,7 @@ body {
     border: 6px solid #8ebbff;
     border-bottom-color: transparent;
     border-radius: 50%;
-    margin-bottom: 2.5rem;
+    margin: 2.5rem;
     display: none;
     box-sizing: border-box;
     animation: rotation 1s linear infinite;

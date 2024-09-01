@@ -35,10 +35,9 @@ const getElement = (selector, messageID) => {
 getElement('a.cursor-text', 'GET-TITLE');
 
 // get content for API
-// get Element and its Text Content
 const getDataForApi = (selectors, messageID) => {
 
-    const waitForElement = () => {
+    const getElementContent = () => {
 
         let [ problemSelector, languageSelector, solutionSelector ] = selectors;
 
@@ -46,36 +45,28 @@ const getDataForApi = (selectors, messageID) => {
         const languageEle = document.querySelector(languageSelector)
         const solutionEle = document.querySelector(solutionSelector)
 
-
-        if(problemEle && languageEle && solutionEle) {
-
-            // access header
+        if (problemEle && languageEle && solutionEle) {
             let problemContent = problemEle.textContent;
-            let languageContent = languageEle.textContent;
+            let languageContent = languageEle.textContent;  // Use .value for input elements like <input> or <textarea>
             let solutionContent = solutionEle.textContent;
 
-
-            // send message to PoPUP
-            browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
-
-                if(message.type === messageID) {
-                    sendResponse({
-                        problem: problemContent,
-                        language: languageContent,
-                        solution: solutionContent
-                    });
-                }
-
-            });
-
-        } else {
-            setTimeout(waitForElement, 100);
+            return {
+                problem: problemContent,
+                language: languageContent,
+                solution: solutionContent,
+            };
         }
-
+        return null;
     };
 
-    waitForElement();
-
+    browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
+        if (message.type === messageID) {
+            const data = getElementContent();
+            if (data) {
+                sendResponse(data);
+            }
+        }
+    });
 };
 
 // get content for api
