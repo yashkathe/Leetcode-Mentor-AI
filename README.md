@@ -15,4 +15,4 @@ LeetCode Mentor AI is a Firefox extension that assists users in solving LeetCode
 
 ### Algorithm to Saving and Displaying Hints
 
-![local storage](</readme/local-storage.drawio.png>)
+![local storage](</readme/local-storage.png>)
