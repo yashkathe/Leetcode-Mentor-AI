@@ -41,11 +41,11 @@ const getDataForApi = (selectors, messageID) => {
 
         let [ problemSelector, languageSelector, solutionSelector ] = selectors;
 
-        const problemEle = document.querySelector(problemSelector)
-        const languageEle = document.querySelector(languageSelector)
-        const solutionEle = document.querySelector(solutionSelector)
+        const problemEle = document.querySelector(problemSelector);
+        const languageEle = document.querySelector(languageSelector);
+        const solutionEle = document.querySelector(solutionSelector);
 
-        if (problemEle && languageEle && solutionEle) {
+        if(problemEle && languageEle && solutionEle) {
             let problemContent = problemEle.textContent;
             let languageContent = languageEle.textContent;  // Use .value for input elements like <input> or <textarea>
             let solutionContent = solutionEle.textContent;
@@ -60,9 +60,9 @@ const getDataForApi = (selectors, messageID) => {
     };
 
     browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
-        if (message.type === messageID) {
+        if(message.type === messageID) {
             const data = getElementContent();
-            if (data) {
+            if(data) {
                 sendResponse(data);
             }
         }
@@ -77,4 +77,3 @@ getDataForApi([
 ]
     , 'GET-API-DATA');
 
-            
