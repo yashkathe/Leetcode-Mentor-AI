@@ -18,6 +18,6 @@ LeetCode Mentor AI is a Firefox extension that assists users in solving LeetCode
 Caching (here) is necesssary because the hint itself is lost whe the extension window closes.  
 It is better to save it so that the reader can go back to the hint, whist simultaneously solving the problem and also limiting API calls.
 
-![local storage](</readme/local-storage.png>)
+![local storage](readme/local-storage.png)
 
 > Can't use Session Storage because the session data is lost everytime the pop up extension closes. This is because an extension has its own storage and console. Hence the data doesn't persist.
